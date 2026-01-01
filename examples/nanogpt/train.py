@@ -114,7 +114,11 @@ else:
 torch.manual_seed(seed + seed_offset)
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
-device_type = "cuda" if "cuda" in device else "cpu"
+device_type = (
+    device.type
+    if isinstance(device, torch.device)
+    else ("cuda" if "cuda" in device else "cpu")
+)
 
 # -----------------------------------------------------------------------------
 # AMP setup
