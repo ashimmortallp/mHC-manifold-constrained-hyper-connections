@@ -15,7 +15,7 @@ with the key constraints:
 
 ### Implementation direction
 
-Static per-layer matrices (closest to the paper):
+Static per-layer matrices:
 - learn `H_res_logits ∈ R^{s×s}` and project to `H_res` with Sinkhorn
 - learn `H_pre_logits`, `H_post_logits` and map to non-negative weights (e.g. softmax)
 
@@ -29,13 +29,13 @@ This is a research prototype aimed at correctness + clarity, not the paper's sys
 torchrun --standalone --nproc_per_node=4 train.py config/train_fineweb10B.py
 ```
 
-**HC** (vanilla Hyper-Connections, 4 streams):
+**HC** (vanilla Hyper-Connections):
 
 ```bash
 torchrun --standalone --nproc_per_node=4 train.py config/train_fineweb10B_hc.py
 ```
 
-**mHC** (Manifold-Constrained Hyper-Connections, 4 streams):
+**mHC** (Manifold-Constrained Hyper-Connections):
 
 ```bash
 torchrun --standalone --nproc_per_node=4 train.py config/train_fineweb10B_mhc.py
@@ -43,9 +43,15 @@ torchrun --standalone --nproc_per_node=4 train.py config/train_fineweb10B_mhc.py
 
 Run from `examples/nanogpt/`. Adjust `--nproc_per_node` to match your GPU count.
 
+### Next steps planned
+- Ablations with value residuals
+- H^res = `(1−α)*I + α*S` instead of full doubly stochastic
+- Replace sinkhorn-knopp w/ Muon's orthogonalization op
+
+
 ### Acknowledgements
 
-Building on top of `lucidrains/hyper-connections`
+Built using code snippets from `nanogpt`, `lucidrains/hyper-connections` and my own mHC implementation.
 
 ### License
 
