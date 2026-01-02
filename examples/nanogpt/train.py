@@ -262,7 +262,7 @@ if compile_model:
     model = torch.compile(model)
 
 if ddp:
-    model = DDP(model, device_ids=[ddp_local_rank])
+    model = DDP(model, device_ids=[ddp_local_rank], find_unused_parameters=mhc)
 
 raw_model = model.module if ddp else model
 
